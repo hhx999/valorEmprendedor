@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use DB;
 use Exception;
+
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 use App\Categoria;
@@ -45,6 +47,14 @@ class AdminCategoriasController extends Controller
         DB::beginTransaction();
         try {
             $categoria = new Categoria;
+
+            $slug = Str::slug($request->nombre,'-');
+                if(Categoria::where('slug',$slug)->exists())
+                    {
+                        $slug = $slug . \uniqid();
+                    }
+                $categoria->slug = strtolower($slug);
+
             $categoria->nombre = $request->nombre;
             $categoria->descripcion = $request->descripcion;
             $categoria->save();

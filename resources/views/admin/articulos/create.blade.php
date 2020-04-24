@@ -23,6 +23,10 @@
                     <input type="text" name="titulo" class="form-control" id="titulo" placeholder="Ingresar título del artículo...">
                   </div>
                   <div class="form-group">
+                    <label for="subtitulo">Subtitulo</label>
+                    <input type="text" name="subtitulo" class="form-control" id="subtitulo" placeholder="Ingresar subtitulo del artículo...">
+                  </div>
+                  <div class="form-group">
                     <label for="copete">Copete</label>
                     <input type="text" name="copete" class="form-control" id="copete" placeholder="Ingresar copete...">
                   </div>

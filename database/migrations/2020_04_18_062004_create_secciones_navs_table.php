@@ -15,8 +15,9 @@ class CreateSeccionesNavsTable extends Migration
     {
         Schema::create('secciones_navs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('titulo');
-            $table->bigInteger('articulo_id')->unsigned()->nullable();
+            $table->integer('posicion');
+            $table->string('titulo')->nullable();
+            $table->bigInteger('categoria_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

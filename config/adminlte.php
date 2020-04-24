@@ -185,15 +185,15 @@ return [
             'submenu' => [
                 [
                     'text' => 'Ver artículos',
-                    'url'  => 'admin/verArticulos',
+                    'url'  => 'admin/articulos/index',
                 ],
                 [
                     'text' => 'Crear artículos',
-                    'url'  => 'admin/crearArticulos',
+                    'url'  => 'admin/articulos/create',
                 ],
                 [
-                    'text' => 'Administrar novedades',
-                    'url'  => 'admin/adminNovedades',
+                    'text' => 'Configurar secciones',
+                    'url'  => 'admin/secciones/configurar',
                 ],
             ],
         ],
@@ -208,30 +208,30 @@ return [
             'submenu' => [
                 [
                     'text' => 'Ver categorías',
-                    'url'  => 'admin/verCategorias',
+                    'url'  => 'admin/categorias/index',
                 ],
                 [
                     'text' => 'Crear categorías',
-                    'url'  => 'admin/crearCategorias',
+                    'url'  => 'admin/categorias/create',
                 ],
                 [
                     'text' => 'Ver rubros',
-                    'url'  => 'admin/verRubros',
+                    'url'  => 'admin/rubros/index',
                 ],
                 [
                     'text' => 'Crear rubros',
-                    'url'  => 'admin/crearRubros',
+                    'url'  => 'admin/rubros/create',
                 ],
             ],
         ],
         [
             'text' => 'Apariencia',
-            'url'  => 'admin/adminApariencia',
+            'url'  => 'admin/apariencia/index',
             'icon' => 'fas fa-pen',
         ],
         [
             'text' => 'Publicidad',
-            'url'  => 'admin/adminPublicidad',
+            'url'  => 'admin/publicidad/index',
             'icon' => 'fas fa-tag',
         ],
         ['header' => 'Manejo del usuarios'],
@@ -241,17 +241,17 @@ return [
             'submenu' => [
                 [
                     'text' => 'Ver administradores',
-                    'url'  => 'admin/verAdministradores',
+                    'url'  => 'admin/usuarios/index',
                 ],
                 [
                     'text' => 'Crear categorías',
-                    'url'  => 'admin/crearAdministradores',
+                    'url'  => 'admin/usuarios/create',
                 ],
             ],
         ],
         [
             'text' => 'Emprendedores',
-            'url'  => 'admin/adminEmprendedores',
+            'url'  => 'admin/emprendedores/index',
             'icon' => 'fas fa-users',
         ],
        

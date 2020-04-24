@@ -15,6 +15,7 @@ class AddForeignKeySeccionesNavsTable extends Migration
     {
         Schema::table('secciones_navs', function (Blueprint $table) {
             //
+            $table->foreign('categoria_id', 'FK_categoriaSeccion')->references('id')->on('categorias')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -27,6 +28,7 @@ class AddForeignKeySeccionesNavsTable extends Migration
     {
         Schema::table('secciones_navs', function (Blueprint $table) {
             //
+            $table->dropForeign('FK_categoriaSeccion');
         });
     }
 }

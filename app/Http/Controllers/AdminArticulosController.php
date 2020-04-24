@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -61,6 +62,15 @@ class AdminArticulosController extends Controller
         DB::beginTransaction();
         try {
             $articulo = new Articulo;
+
+            $slug = Str::slug($request->titulo,'-');
+                if(Articulo::where('slug',$slug)->exists())
+                {
+                    $slug = $slug . \uniqid();
+                }
+
+                $articulo->slug = strtolower($slug);
+
             $articulo->titulo = $request->titulo;
             $articulo->subtitulo = $request->subtitulo;
             $articulo->copete = $request->copete;
