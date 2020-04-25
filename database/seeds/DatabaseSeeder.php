@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SeccionesSeeder::class);
         $this->call(AparienciaSeeder::class);
         $this->call(PublicidadTipoSeeder::class);
+        $this->call(AnuncioTipoSeeder::class);
+        $this->call(LocalidadSeeder::class);
     }
 
 }

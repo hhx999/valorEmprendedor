@@ -14,6 +14,7 @@ use App\SeccionesNav;
 use App\Comentario;
 use App\Apariencia;
 use App\Publicidad;
+use App\Anuncio;
 
 class IndexController extends Controller
 {
@@ -30,6 +31,8 @@ class IndexController extends Controller
 
         $publicidades = Publicidad::all();
 
+        $ultimos_anuncios = Anuncio::orderBy('created_at','DESC')->take(5)->get();
+
         $categorias = Categoria::all();
         $secciones = SeccionesNav::whereNotNull('categoria_id')->get();
 
@@ -37,7 +40,7 @@ class IndexController extends Controller
 
         $articulos = Articulo::orderBy('created_at','DESC')->take(10)->get();
 
-        return view('public.index',['secciones' => $secciones, 'ultimos_articulos' => $ultimos_articulos, 'categorias' => $categorias, 'articulos' => $articulos, 'logo' => $logo, 'icono' => $icono, 'publicidades' => $publicidades]);
+        return view('index',['secciones' => $secciones, 'ultimos_articulos' => $ultimos_articulos, 'categorias' => $categorias, 'articulos' => $articulos, 'logo' => $logo, 'icono' => $icono, 'publicidades' => $publicidades,'ultimos_anuncios' => $ultimos_anuncios]);
     }
     public function verCategoria($categoria) {
         var_dump($categoria);

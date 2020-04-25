@@ -95,4 +95,12 @@ Route::get('/admin/publicidad/edit/{id}','AdminPublicidadController@edit')->name
 Route::post('/admin/publicidad/edit','AdminPublicidadController@update');
 Route::post('/admin/publicidad/delete','AdminPublicidadController@delete')->name('eliminarPublicidad');
 
+//Sección de anuncios
+
+Route::get('/admin/anuncios/index','AdminAnuncioController@index');
+Route::get('/admin/anuncios/create','AdminAnuncioController@create');
+Route::get('/admin/anuncios/edit','AdminAnuncioController@edit');
+Route::post('/admin/anuncios/store','AdminAnuncioController@store')->name('agregarAnuncio');
+Route::post('/admin/anuncios/update','AdminAnuncioController@index')->name('editarAnuncio');
+Route::post('/admin/anuncios/delete','AdminAnuncioController@index')->name('eliminarAnuncio');
 

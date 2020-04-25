@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 use App\Categoria;
 use App\Articulo;
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        Schema::defaultStringLength(191);
         //Categoria::observe(CategoriaObserver::class);
         //Articulo::observe(ArticuloObserver::class);
     }
