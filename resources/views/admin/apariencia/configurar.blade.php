@@ -32,9 +32,7 @@
                                 <input type="file" name="imagen" class="custom-file-input" id="image" aria-describedby="inputGroupFileAddon01">
                                 <label class="custom-file-label" for="image" id="mensajeImagen">Ingresar una imagen.</label>
                               </div>
-                              <p><b>Recomendación:</b> la imagen debe tener un tamaño menor a 2mb, y si es posible tiene que tener las dimensiones 700px de largo 400px de alto.<br>
-                                En el siguiente link hay una imagen de prueba para descargar y saber las medidas correctas. <br>Usted puede utilizarla de modelo de comparación.<br>
-                                <a href="{{asset('img/pruebas/emprendimiento.png')}}">Descargar imagen</a>
+                              <p><b>Advertencia:</b> la imagen debe tener un tamaño menor a 2mb.
                               </p>
                             </div>
                         </div>
@@ -69,9 +67,7 @@
                                 <input type="file" name="imagen" class="custom-file-input" id="image" aria-describedby="inputGroupFileAddon01">
                                 <label class="custom-file-label" for="image" id="mensajeImagen">Ingresar una imagen.</label>
                               </div>
-                              <p><b>Recomendación:</b> la imagen debe tener un tamaño menor a 2mb, y si es posible tiene que tener las dimensiones 700px de largo 400px de alto.<br>
-                                En el siguiente link hay una imagen de prueba para descargar y saber las medidas correctas. <br>Usted puede utilizarla de modelo de comparación.<br>
-                                <a href="{{asset('img/pruebas/emprendimiento.png')}}">Descargar imagen</a>
+                              <p><b>Advertencia:</b> la imagen debe tener un tamaño menor a 2mb.
                               </p>
                             </div>
                         </div>

@@ -10,7 +10,8 @@
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CLato:300,400" rel="stylesheet"> 
-		
+		<link rel="icon" type="image/png" href="{{asset('img/apariencia/'.$icono)}}" />
+
 		<!-- Bootstrap -->
 		<link type="text/css" rel="stylesheet" href="{{asset('style/css/bootstrap.min.css')}}"/>
 
@@ -45,15 +46,19 @@
 							<li><a href="{{url('/contacto')}}">Contacto</a></li>
 							<!--<li><a href="#">Advertisement</a></li>
 							<li><a href="#">Privacy</a></li>-->
-							<li><a href="{{url('/inicio-sesion')}}"><i class="fa fa-sign-in"></i> Inicio sesión</a></li>
+							@if(Session::get('cargo') == 'administrador' )
+							<li><a href="{{url('/admin/dashboard/index')}}"><i class="fa fa-sign-in"></i> Panel de administración</a></li>
+							@endif
 						</ul>
 					</div>
 					<div class="header-social">
 						<ul>
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<!--<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
-							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+							@if($facebook->url)
+							<li><a href="{{$facebook->url}}"><i class="fa fa-facebook"></i></a></li>
+							@endif
+							@if($instagram->url)
+							<li><a href="{{$instagram->url}}"><i class="fa fa-instagram"></i></a></li>
+							@endif
 						</ul>
 					</div>
 				</div>
@@ -65,11 +70,16 @@
 				<div class="container">
 					<!-- Agregar logo ingresado en apariencia -->
 					<div class="header-logo">
-						<a href="#" class="logo"><img src="{{asset('img/apariencia/'.$logo->imagen)}}" alt=""></a>
+						<a href="{{url('/')}}" class="logo" style="max-width: 300px;"><img src="{{asset('img/apariencia/'.$logo->imagen)}}" alt=""></a>
 					</div>
 					<!-- Agregar ads ingresadas en publicidad -->
 					<div style="float: right;">
-						<a href="#" class="logo"><img src="{{asset('style/img/img-widget-11.jpg')}}" alt=""></a>
+						<a href="#" class="logo"><img style="width: 728px;height: 90px;" src="@if($publicidad_header)
+							{{asset('img/sitio/'.$publicidad_header->imagen)}}
+							@else 
+							{{asset('style/img/img-widget-11.jpg')}}
+							@endif
+							" alt=""></a>
 					</div>
 				</div>
 			</div>
@@ -80,10 +90,10 @@
 				<div class="container">
 					<nav id="main-nav">
 						<div class="nav-logo">
-							<a href="#" class="logo"><img src="{{asset('style/img/logo-alt.png')}}" alt=""></a>
+							<a href="{{url('/')}}" class="logo"><img src="{{asset('style/img/logo-alt.png')}}" alt=""></a>
 						</div>
 						<ul class="main-nav nav navbar-nav">
-							<li class="active"><a href="#">Inicio</a></li>
+							<li class="active"><a href="{{url('/')}}">Inicio</a></li>
 							@foreach($secciones as $seccion)
 								<li><a href="{{url('/'.$seccion->categoria->slug)}}">{{$seccion->titulo}}</a></li>
 							@endforeach
@@ -136,33 +146,52 @@
 									<h3 class="title">Seguinos</h3>
 								</div>
 								<ul>
+									@if($facebook->url)
 									<li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+									@endif
+									@if($instagram->url)
 									<li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
+									@endif
 								</ul>
 							</div>
 							<!-- /footer social -->
-							
-							<!-- footer subscribe -->
-							<div class="footer-widget subscribe-widget">
-								<div class="widget-title">
-									<h2 class="title">Subscribe to Noticiaslatter</h2>
-								</div>
-								<form>
-									<input class="input" type="email" placeholder="Enter Your Email">
-									<button class="input-btn">Subscribe</button>
-								</form>
-							</div>
-							<!-- /footer subscribe -->
 						</div>
 						<!-- /Column 1 -->
 						
 						<!-- Column 2 -->
 						<div class="col-md-4">
+							<!-- footer subscribe -->
+							<div class="footer-widget subscribe-widget">
+								<div class="widget-title">
+								<h2 class="title">Envianos tu mensaje!</h2>
+							</div>
+							<form action="{{route('enviarMensaje')}}" method="post" name="enviarMensaje">
+								@csrf
+								<input class="input" name="nombre" type="text" placeholder="Ingresá tu nombre">
+
+								<input class="input" name="email" type="email" placeholder="Ingresá tu email">
+								<select name="categoria_mensaje_id">
+									@foreach($categoria_mensajes as $categoria)
+									<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+									@endforeach
+								</select>
+								<hr>
+								<textarea rows="4" class="textarea" name="contenido"></textarea>
+								<button class="input-btn">Enviar mensaje</button>
+							</form>
+							</div>
+							
+						</div>
+							<!-- /footer subscribe -->
 						</div>
 						<!-- /Column 2 -->
 						
 						<!-- Column 3 -->
 						<div class="col-md-4">
+
+							@foreach($secciones as $seccion)
+								<span>{{$seccion->nombre}} <b style="color: gray;">|</b> </span>
+							@endforeach
 							
 						</div>
 						<!-- /Column 3 -->
@@ -182,8 +211,8 @@
 						<!-- footer links -->
 						<div class="col-md-6 col-md-push-6">
 							<ul class="footer-links">
-								<li><a href="#">Sobre nosotros</a></li>
-								<li><a href="#">Contacto</a></li>
+								<li><a href="{{url('/sobre-nosotros')}}">Sobre nosotros</a></li>
+								<li><a href="{{url('/contacto')}}">Contacto</a></li>
 							</ul>
 						</div>
 						<!-- /footer links -->
@@ -192,6 +221,7 @@
 						<div class="col-md-6 col-md-pull-6">
 							<div class="footer-copyright">
 								<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Sitio creado por Borjas Vega Riveras - <a href="mailto:borjas.vegariveras@gmail.com">borjas.vegariveras@gmail.com</a><br>
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
 							</div>

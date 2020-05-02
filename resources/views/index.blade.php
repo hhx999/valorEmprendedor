@@ -16,12 +16,12 @@
 						</div>
 						<div class="article-body">
 							<ul class="article-info">
-								<li class="article-category"><a href="{{url('/'.$articulo->categoria->slug)}}">{{$articulo->categoria->nombre}}</a></li>
+								<li class="article-category"><a href="{{url('/categoria/'.$articulo->categoria->slug)}}">{{$articulo->categoria->nombre}}</a></li>
 								<!--
 								<li class="article-type"><i class="fa fa-camera"></i></li>
 								-->
 							</ul>
-							<h2 class="article-title"><a href="{{url('/'.$articulo->categoria->slug.'/'.$articulo->slug)}}">{{$articulo->titulo}}</a></h2>
+							<h2 class="article-title"><a href="{{url('/articulo/'.$articulo->categoria->slug.'/'.$articulo->slug)}}">{{$articulo->titulo}}</a></h2>
 							<ul class="article-meta">
 								<li><i class="fa fa-clock-o"></i> {{$articulo->created_at}}</li>
 								<li><i class="fa fa-comments"></i> {{$articulo->total_respuestas}}</li>
@@ -83,12 +83,12 @@
 													<!-- ARTICLE -->
 													<article class="article widget-article">
 														<div class="article-img">
-															<a href="{{url('/'.$articulo->categoria->slug.'/'.$articulo->slug)}}">
+															<a href="{{url('/articulo/'.$articulo->categoria->slug.'/'.$articulo->slug)}}">
 																<img src="{{asset('img/portadas/'.$articulo->imagen)}}" alt="">
 															</a>
 														</div>
 														<div class="article-body">
-															<h4 class="article-title"><a href="{{url('/'.$articulo->categoria->slug.'/'.$articulo->slug)}}">{{$articulo->titulo}}</a></h4>
+															<h4 class="article-title"><a href="{{url('/articulo/'.$articulo->categoria->slug.'/'.$articulo->slug)}}">{{$articulo->titulo}}</a></h4>
 															<ul class="article-meta">
 																<li><i class="fa fa-clock-o"></i>{{$articulo->created_at}}</li>
 																<li><i class="fa fa-comments"></i> {{$articulo->total_comentarios}}</li>
@@ -107,7 +107,7 @@
 										<!-- ARTICLE -->
 										<article class="article">
 											<div class="article-img">
-												<a href="{{url('/'.$articulo->categoria->slug.'/'.$articulo->slug)}}">
+												<a href="{{url('/articulo/'.$articulo->categoria->slug.'/'.$articulo->slug)}}">
 													<img style="height: 200px;" src="{{asset('img/portadas/'.$articulo->imagen)}}" alt="">
 												</a>
 												<!--
@@ -117,7 +117,7 @@
 												-->
 											</div>
 											<div class="article-body">
-												<h4 class="article-title"><a href="{{url('/'.$articulo->categoria->slug.'/'.$articulo->slug)}}">{{$articulo->titulo}}</a></h4>
+												<h4 class="article-title"><a href="{{url('/articulo/'.$articulo->categoria->slug.'/'.$articulo->slug)}}">{{$articulo->titulo}}</a></h4>
 												<ul class="article-meta">
 													<li style="color: gray !important;"><i class="fa fa-clock-o"></i> {{$articulo->created_at}}</li>
 													<li style="color: gray !important;"><i class="fa fa-comments"></i> {{$articulo->total_comentarios}}</li>
@@ -190,10 +190,18 @@
 								@endforeach
 							</div>
 							<!-- /Column 1 -->
+							<div class="row">
+								<div class="col-md-12">
+									@foreach($categorias as $categoria)
+									<span> <a href="{{url('/'.$categoria->slug)}}">{{$categoria->nombre}}</a> / </span>
+									@endforeach
+								</div>
+							</div>
 						</div>
 						<!-- /row -->
-						
-					</div>
+
+							
+						</div>
 					<!-- /Main Column -->
 					
 					<!-- Aside Column -->
@@ -201,12 +209,14 @@
 						<!-- Ad widget -->
 						<!-- Funcionalidad de publicidades acá PUBLICIDADES -->
 						<!--<div class="widget center-block hidden-xs" align="center">-->
-							@foreach($publicidades as $publicidad)
-							<img style="width: 300px;height: 250px;"  src="{{asset('storage/ads/'.$publicidad->imagen)}}" alt="">
-								
-							@endforeach
-
-							<div style="width: 300px;height: 250px;background: lightgray;padding: 20px"><p>AD 250px x 300px</p> </div>
+							@if($publicidades)
+								@foreach($publicidades as $publicidad)
+									<img style="width: 300px;height: 250px;display:block !important;"  src="{{asset('img/sitio/'.$publicidad->imagen)}}" alt="">
+									
+								@endforeach
+							@else
+								<div style="width: 300px;height: 250px;background: lightgray;padding: 20px"><p>AD 250px x 300px</p> </div>
+							@endif
 						<!--</div>-->
 						<!-- /Ad widget -->
 						
@@ -227,13 +237,23 @@
 						<!-- /social widget -->
 						
 						<!-- subscribe widget -->
-						<div class="widget subscribe-widget">
+						<div class="widget subscribe-widget" align="center">
 							<div class="widget-title">
-								<h2 class="title">Suscribite para estar al tanto de nuestras novedades!</h2>
+								<h2 class="title">Envianos tu mensaje!</h2>
 							</div>
-							<form>
-								<input class="input" type="email" placeholder="Ingresá tu email">
-								<button class="input-btn">Suscribir</button>
+							<form action="{{route('enviarMensaje')}}" method="post" name="enviarMensaje">
+								@csrf
+								<input class="input" name="nombre" type="text" placeholder="Ingresá tu nombre">
+
+								<input class="input" name="email" type="email" placeholder="Ingresá tu email">
+								<select name="categoria_mensaje_id">
+									@foreach($categoria_mensajes as $categoria)
+									<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+									@endforeach
+								</select>
+								<hr>
+								<textarea rows="4" class="textarea" name="contenido"></textarea>
+								<button class="input-btn">Enviar mensaje</button>
 							</form>
 						</div>
 						<!-- /subscribe widget -->

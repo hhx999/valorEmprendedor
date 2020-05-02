@@ -10,66 +10,51 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{$articulos}}</h3>
 
                 <p>Artículos</p>
               </div>
               <div class="icon">
                 <i class="ion ion-document-text"></i>
               </div>
-              <a href="#" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('admin/articulos/index')}}" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53</h3>
+                <h3>{{$mensajes}}</h3>
 
-                <p>Consultas</p>
+                <p>Mensajes</p>
               </div>
               <div class="icon">
                 <i class="ion ion-chatbubbles"></i>
               </div>
-              <a href="#" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('admin/mensajes/index')}}" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{$categorias}}</h3>
 
-                <p>Emprendedores</p>
+                <p>Categorias</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('admin/categorias/index')}}" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
 
-                <p>Visitas al sitio</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
         </div>
         <!-- /.row -->
         <!-- Main row -->
@@ -81,12 +66,13 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="ion ion-clipboard mr-1"></i>
-                  Últimas consultas
+                  Últimos mensajes
                 </h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <ul class="todo-list" data-widget="todo-list">
+                  @foreach($ultimos_mensajes as $mensaje)
                   <li>
                     <!-- drag handle -->
                     <span class="handle">
@@ -94,32 +80,11 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </span>
                     <!-- todo text -->
-                    <span class="text">Consulta ? </span>
+                    <span class="text">{{$mensaje->nombre}}</span>
                     <!-- Emphasis label -->
-                    <small class="badge badge-danger">Rubro</small>
+                    <small class="badge badge-danger">{{$mensaje->categoria->nombre}}</small>
                   </li>
-                  <li>
-                    <!-- drag handle -->
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <!-- todo text -->
-                    <span class="text">Consulta 3 ? </span>
-                    <!-- Emphasis label -->
-                    <small class="badge badge-danger">Rubro</small>
-                  </li>
-                  <li>
-                    <!-- drag handle -->
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <!-- todo text -->
-                    <span class="text">Consulta ? </span>
-                    <!-- Emphasis label -->
-                    <small class="badge badge-danger">Rubro</small>
-                  </li>
+                  @endforeach
                 </ul>
               </div>
             </div>
@@ -151,34 +116,20 @@
                       <th>Artículo ID</th>
                       <th>Nombre</th>
                       <th>Categoría</th>
-                      <th>Visitas</th>
+                      <th>Comentarios</th>
                     </tr>
                     </thead>
                     <tbody>
+                      @foreach($ultimos_articulos as $articulo)
                     <tr>
-                      <td><a href="pages/examples/invoice.html">OR9842</a></td>
+                      <td><a href="pages/examples/invoice.html">{{$articulo->id}}</a></td>
                       <td>Artículo 1</td>
-                      <td><span class="badge badge-success">Noticias</span></td>
+                      <td><span class="badge badge-success">{{$articulo->categoria->nombre}}</span></td>
                       <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">123</div>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">{{$articulo->total_comentarios}}</div>
                       </td>
                     </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                      <td>Tips emprendedores 2</td>
-                      <td><span class="badge badge-warning">Tips</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f39c12" data-height="20">32</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                      <td>Historia del emprendimiento 2</td>
-                      <td><span class="badge badge-danger">Historias</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f56954" data-height="20">200</div>
-                      </td>
-                    </tr>
+                    @endforeach
                     </tbody>
                   </table>
                 </div>

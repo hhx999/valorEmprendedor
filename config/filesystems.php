@@ -68,16 +68,10 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-        'ads' => [
-            'driver' => 'local',
-            'root' => storage_path('img/ads'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-        ],
-        'publicidades' => [
+        'imagenes_sitio' => [
             'driver' => 'local',
             //'root' => storage_path('app/public'),
-            'root' => public_path('img/publicidades'),
+            'root' => public_path('img/sitio'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

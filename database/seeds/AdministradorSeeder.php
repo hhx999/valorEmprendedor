@@ -15,10 +15,11 @@ class AdministradorSeeder extends Seeder
     {
         //
         $administrador = new Usuario();
+        $administrador->email = 'admin@valoremprendedor.com.ar';
         $administrador->nombre = 'Administrador';
         $administrador->apellido = 'Sitio';
         $administrador->fecha_nacimiento = '14-11-1995'; 
-        $administrador->password = bcrypt('borjas');
+        $administrador->password = bcrypt('jarDIN35');
         $administrador->cargo_id = 1;
         $administrador->save();
     }

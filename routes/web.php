@@ -21,86 +21,104 @@
 //Inicio
 Route::get('/','IndexController@index');
 
+Route::post('comentario','ComentarioController@store')->name('agregarComentario');
+
 Route::get('/sobre-nosotros','IndexController@sobreNosotros');
 Route::get('/contacto','IndexController@contacto');
-Route::get('/inicio-sesion','IndexController@login');
+Route::get('/inicio-sesion','IndexController@usuarioLogin');
+Route::post('/inicio-sesion','IndexController@usuarioLogin')->name('ingresoUsuario');
 
-//InicioIndex
-Route::get('/admin','AdminIndexController@index');
+Route::post('/enviar-mensaje','MensajeController@store')->name('enviarMensaje');
 
 //Articulos
-//Route::get('/{$categoria}/{$}','IndexController@verArticulo');
-Route::get('/{categoria}/{articulo}', 'IndexController@verArticulo');
+Route::get('/categoria/{slug}','IndexController@obtenerCategoria')->name('verCategoria');
+Route::get('/articulo/{categoria}/{articulo}', 'IndexController@verArticulo');
+
+Route::get('/logout','IndexController@logout');
 
 //SECCIÓN ADMINISTRACIÓN
+Route::group(['middleware' => ['checkrole:administrador']], function () {
 
-//Configuración de las secciones vistas en la navbar
-Route::get('/admin/secciones','SeccionesNavController@index');
-Route::get('/admin/secciones/configurar','SeccionesNavController@configurar');
-Route::post('/admin/secciones/configurar','SeccionesNavController@update')->name('configurarSecciones');
-Route::get('/admin/seccion/editar{$id}','SeccionesNavController@edit')->name('editarSeccion');
+	//Inicio ADMIN
+	Route::get('/admin/dashboard/index','AdminIndexController@index');
 
-// Sección de artículos
+	//Configuración de las secciones vistas en la navbar
+	Route::get('/admin/secciones','SeccionesNavController@index');
+	Route::get('/admin/secciones/configurar','SeccionesNavController@configurar');
+	Route::post('/admin/secciones/configurar','SeccionesNavController@update')->name('configurarSecciones');
+	Route::get('/admin/seccion/editar{$id}','SeccionesNavController@edit')->name('editarSeccion');
 
-Route::get('/admin/articulos/index','AdminArticulosController@index');
-Route::get('/admin/articulos/create','AdminArticulosController@create');
-Route::post('/admin/articulos/create','AdminArticulosController@store')->name('agregarArticulo');
-Route::get('/admin/articulos/edit/{id}','AdminArticulosController@edit')->name('editarArticulo');
-Route::get('/admin/articulos/edit/{id}','AdminArticulosController@delete')->name('eliminarArticulo');
+	// Sección de artículos
 
-//Sección de consultas
+	Route::get('/admin/articulos/index','AdminArticulosController@index');
+	Route::get('/admin/articulos/create','AdminArticulosController@create');
+	Route::post('/admin/articulos/create','AdminArticulosController@store')->name('agregarArticulo');
+	Route::get('/admin/articulos/edit/{id}','AdminArticulosController@edit')->name('editarArticulo');
+	Route::post('/admin/articulos/delete','AdminArticulosController@delete')->name('eliminarArticulo');
 
-Route::get('/admin/consultas/index','AdminConsultasController@index');
-Route::get('/admin/consultas/create','AdminConsultasController@create');
-Route::get('/admin/consultas/edit/{id}','AdminConsultasController@edit');
-Route::get('/admin/consultas/delete/{id}','AdminConsultasController@delete');
+	//Sección de consultas
 
-//Sección de categorías
+	Route::get('/admin/consultas/index','AdminConsultasController@index');
+	Route::get('/admin/consultas/create','AdminConsultasController@create')->name('agregarConsulta');
+	Route::get('/admin/consultas/edit/{id}','AdminConsultasController@edit')->name('editarConsulta');
+	Route::post('/admin/consultas/delete','AdminConsultasController@delete')->name('eliminarConsulta');
 
-Route::get('/admin/categorias/index','AdminCategoriasController@index');
-Route::get('/admin/categorias/create','AdminCategoriasController@create');
-Route::post('/admin/categorias/create','AdminCategoriasController@store')->name('agregarCategoria');
-Route::get('/admin/categorias/edit/{id}','AdminCategoriasController@edit')->name('editarCategoria');
-Route::post('/admin/categorias/update/{id}','AdminCategoriasController@update')->name('actualizarCategoria');
-Route::post('/admin/categorias/delete','AdminCategoriasController@destroy')->name('eliminarCategoria');
+	//Sección de categorías
 
-//Sección de rubros
+	Route::get('/admin/categorias/index','AdminCategoriasController@index');
+	Route::get('/admin/categorias/create','AdminCategoriasController@create');
+	Route::post('/admin/categorias/create','AdminCategoriasController@store')->name('agregarCategoria');
+	Route::get('/admin/categorias/edit/{id}','AdminCategoriasController@edit')->name('editarCategoria');
+	Route::post('/admin/categorias/update/{id}','AdminCategoriasController@update')->name('actualizarCategoria');
+	Route::post('/admin/categorias/delete','AdminCategoriasController@destroy')->name('eliminarCategoria');
 
-Route::get('/admin/rubros/index','AdminRubrosController@index');
-Route::get('/admin/rubros/create','AdminRubrosController@create');
-Route::get('/admin/rubros/edit/{id}','AdminRubrosController@edit');
-Route::get('/admin/rubros/delete/{id}','AdminRubrosController@delete');
+	//Sección de rubros
 
-//Sección de usuarios
+	Route::get('/admin/rubros/index','AdminRubrosController@index');
+	Route::get('/admin/rubros/create','AdminRubrosController@create');
+	Route::get('/admin/rubros/edit/{id}','AdminRubrosController@edit');
+	Route::get('/admin/rubros/delete/{id}','AdminRubrosController@delete');
 
-Route::get('/admin/usuarios/index','AdminUsuariosController@index');
-Route::get('/admin/usuarios/create','AdminUsuariosController@create');
-Route::get('/admin/usuarios/edit/{id}','AdminUsuariosController@edit');
-Route::get('/admin/usuarios/delete/{id}','AdminUsuariosController@delete');
+	//Sección de usuarios
 
-//Sección de apariencia
+	Route::get('/admin/usuarios/index','AdminUsuariosController@index');
+	Route::get('/admin/usuarios/create','AdminUsuariosController@create');
+	Route::get('/admin/usuarios/edit/{id}','AdminUsuariosController@edit');
+	Route::post('/admin/usuarios/delete','AdminUsuariosController@delete');
 
-Route::get('/admin/apariencia/index','AdminAparienciaController@index');
-Route::get('/admin/apariencia/configurar','AdminAparienciaController@configurar');
-Route::post('/admin/apariencia/configurarLogo','AdminAparienciaController@configurarLogo')->name('agregar-logo');
-Route::post('/admin/apariencia/configurarIcono','AdminAparienciaController@configurarIcono')->name('agregar-icono');
-Route::get('/admin/apariencia/edit/{id}','AdminAparienciaController@edit');
+	//Sección de apariencia
 
-//Sección de publicidad
+	Route::get('/admin/apariencia/index','AdminAparienciaController@index');
+	Route::get('/admin/apariencia/configurar','AdminAparienciaController@configurar');
+	Route::post('/admin/apariencia/configurarLogo','AdminAparienciaController@configurarLogo')->name('agregar-logo');
+	Route::post('/admin/apariencia/configurarIcono','AdminAparienciaController@configurarIcono')->name('agregar-icono');
+	Route::get('/admin/apariencia/edit/{id}','AdminAparienciaController@edit');
 
-Route::get('/admin/publicidad/index','AdminPublicidadController@index');
-Route::get('/admin/publicidad/create','AdminPublicidadController@create');
-Route::post('/admin/publicidad/store','AdminPublicidadController@store')->name('agregarPublicidad');
-Route::get('/admin/publicidad/edit/{id}','AdminPublicidadController@edit')->name('editarPublicidad');
-Route::post('/admin/publicidad/edit','AdminPublicidadController@update');
-Route::post('/admin/publicidad/delete','AdminPublicidadController@delete')->name('eliminarPublicidad');
+	//Sección de publicidad
 
-//Sección de anuncios
+	Route::get('/admin/publicidad/index','AdminPublicidadController@index');
+	Route::get('/admin/publicidad/create','AdminPublicidadController@create');
+	Route::post('/admin/publicidad/store','AdminPublicidadController@store')->name('agregarPublicidad');
+	Route::get('/admin/publicidad/edit/{id}','AdminPublicidadController@edit')->name('editarPublicidad');
+	Route::post('/admin/publicidad/edit','AdminPublicidadController@update');
+	Route::post('/admin/publicidad/delete','AdminPublicidadController@delete')->name('eliminarPublicidad');
 
-Route::get('/admin/anuncios/index','AdminAnuncioController@index');
-Route::get('/admin/anuncios/create','AdminAnuncioController@create');
-Route::get('/admin/anuncios/edit','AdminAnuncioController@edit');
-Route::post('/admin/anuncios/store','AdminAnuncioController@store')->name('agregarAnuncio');
-Route::post('/admin/anuncios/update','AdminAnuncioController@index')->name('editarAnuncio');
-Route::post('/admin/anuncios/delete','AdminAnuncioController@index')->name('eliminarAnuncio');
+	//Sección de anuncios
 
+	Route::get('/admin/anuncios/index','AdminAnuncioController@index');
+	Route::get('/admin/anuncios/create','AdminAnuncioController@create');
+	Route::get('/admin/anuncios/edit','AdminAnuncioController@edit');
+	Route::post('/admin/anuncios/store','AdminAnuncioController@store')->name('agregarAnuncio');
+	Route::post('/admin/anuncios/update','AdminAnuncioController@index')->name('editarAnuncio');
+	Route::post('/admin/anuncios/delete','AdminAnuncioController@index')->name('eliminarAnuncio');
+
+	//Sección de contacto
+
+	Route::get('/admin/contacto/configurar','AdminContactoController@configurar');
+	Route::post('/admin/contacto/configurarContacto','AdminContactoController@configurarContacto')->name('configurarContacto');
+	Route::post('/admin/contacto/configurarNosotros','AdminContactoController@configurarNosotros')->name('configurarNosotros');
+	Route::post('/admin/contacto/configurarFacebook','AdminContactoController@configurarFacebook')->name('configurarFacebook');
+	Route::post('/admin/contacto/configurarInstagram','AdminContactoController@configurarInstagram')->name('configurarInstagram');
+
+
+});

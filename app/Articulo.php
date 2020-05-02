@@ -11,8 +11,13 @@ class Articulo extends Model
 
     public function getTotalComentariosAttribute()
 	{
-	   return $this->hasMany('App\Comentarios')->whereArticuloId($this->id)->count();
+	   return $this->hasMany('App\ComentarioExterno')->whereArticuloId($this->id)->count();
 
+	}
+
+	public function comentarios()
+	{
+		return $this->hasMany('App\ComentarioExterno')->whereArticuloId($this->id);
 	}
 	public function categoria()
 	{

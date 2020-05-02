@@ -15,7 +15,11 @@ class CargoSeeder extends Seeder
     {
         //
         $cargo = new Cargo();
-        $cargo->nombre = 'Administración';
+        $cargo->nombre = 'administrador';
+        $cargo->save();
+
+        $cargo = new Cargo();
+        $cargo->nombre = 'usuario';
         $cargo->save();
     }
 }

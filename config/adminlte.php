@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Emprendedores Sitio',
+    'title' => 'Valor Emprendedor',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -30,12 +30,13 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image-xl',
+    'logo' => '<b>Valor</b>Emprendedor',
+    'logo_img' => null,
+    //'logo_img_class' => 'brand-image img-rectangle elevation-3',
+    'logo_img_class' => null,
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_xl_class' => null,
+    'logo_img_alt' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -134,7 +135,7 @@ return [
 
     'use_route_url' => false,
 
-    'dashboard_url' => 'admin',
+    'dashboard_url' => 'admin/dashboard/index',
 
     'logout_url' => 'logout',
 
@@ -224,16 +225,23 @@ return [
                 ],
             ],
         ],
+        ['header' => 'Estética del sitio'],
         [
             'text' => 'Apariencia',
-            'url'  => 'admin/apariencia/index',
+            'url'  => 'admin/apariencia/configurar',
             'icon' => 'fas fa-pen',
+        ],
+        [
+            'text' => 'Contacto',
+            'url'  => 'admin/contacto/configurar',
+            'icon' => 'fas fa-share-alt',
         ],
         [
             'text' => 'Publicidad',
             'url'  => 'admin/publicidad/index',
             'icon' => 'fas fa-tag',
         ],
+        /*
         ['header' => 'Manejo del usuarios'],
         [
             'text'    => 'Administradores',
@@ -253,6 +261,17 @@ return [
             'text' => 'Emprendedores',
             'url'  => 'admin/emprendedores/index',
             'icon' => 'fas fa-users',
+        ],*/
+        ['header' => 'Herramientas del sitio'],
+        [
+            'text' => 'Ver sitio',
+            'url'  => '/',
+            'icon' => 'fas fa-eye',
+        ],
+        [
+            'text' => 'Cerrar sesión',
+            'url'  => '/logout',
+            'icon' => 'fas fa-power-off',
         ],
        
     ],

@@ -61,7 +61,7 @@ class AdminPublicidadController extends Controller
 
             //subimos la imagen del logo
                 if($request->file('imagen')){
-                    $path = Storage::disk('ads')->put('image',$request->file('imagen'));
+                    $path = Storage::disk('imagenes_sitio')->put('image',$request->file('imagen'));
                     //agregamos la imagen al registro del logo agregado
                     $publicidad->fill(['imagen' => $path])->save();
                 }    

@@ -19,7 +19,11 @@ class PublicidadTipoSeeder extends Seeder
         $tipo_publicidad->save();
 
         $tipo_publicidad = new PublicidadTipo();
-        $tipo_publicidad->nombre = 'ad-body';
+        $tipo_publicidad->nombre = 'ad-body-index';
+        $tipo_publicidad->save();
+
+        $tipo_publicidad = new PublicidadTipo();
+        $tipo_publicidad->nombre = 'ad-body-articulo';
         $tipo_publicidad->save();
 
         $tipo_publicidad = new PublicidadTipo();
