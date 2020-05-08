@@ -64,15 +64,15 @@
                                 <span class="input-group-text" id="inputGroupFileAddon01">Subir ícono</span>
                               </div>
                               <div class="custom-file">
-                                <input type="file" name="imagen" class="custom-file-input" id="image" aria-describedby="inputGroupFileAddon01">
-                                <label class="custom-file-label" for="image" id="mensajeImagen">Ingresar una imagen.</label>
+                                <input type="file" name="imagen" class="custom-file-input" id="image2" aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="image2" id="mensajeImagen">Ingresar una imagen.</label>
                               </div>
                               <p><b>Advertencia:</b> la imagen debe tener un tamaño menor a 2mb.
                               </p>
                             </div>
                         </div>
                         <div class="col-md-6" align="center">
-                            <img id="image_preview_container" src="{{asset('img/apariencia/'.$icono->imagen) }}"
+                            <img id="image_preview_container2" src="{{asset('img/apariencia/'.$icono->imagen) }}"
                                     alt="vista previa de la imagen" style="max-height: 150px;">
                         </div>
                     </div>
@@ -109,6 +109,20 @@
  
         });
     });
+    $(document).ready(function (e) {
+
  
+        $('#image2').change(function(){
+          
+            let reader = new FileReader();
+            reader.onload = (e) => { 
+              $('#image_preview_container2').attr('src', e.target.result);
+              console.log($('#image').attr('value')); 
+              $("#mensajeImagen2").text('Imagen agregada.');
+            }
+            reader.readAsDataURL(this.files[0]); 
+ 
+        });
+    }); 
 </script>
 @stop

@@ -3,7 +3,12 @@
 @section('title') Valor Emprendedor - {{$articulo->titulo}} @endsection
 
 @section('content')
-
+<style type="text/css">
+	img{
+		max-width: 100% !important;
+		max-height: 420px !important;
+	}
+</style>
 
 <!-- CONTAINER -->
 			<div class="container">
@@ -13,19 +18,24 @@
 					<div class="col-md-8">
 
 						<!-- breadcrumb -->
-						<ul class="article-breadcrumb">
+						<ul class="article-breadcrumb" style="margin-top: 20px;">
 							<li><a href="{{url('/')}}">Inicio</a></li>
 							<li><a href="{{route('verCategoria', $articulo->categoria->slug)}}">{{$articulo->categoria->nombre}}</a></li>
-							<li>{{$articulo->titulo}}</li>
+							<li style="color: gray;">{{$articulo->titulo}}</li>
 						</ul>
 						<!-- /breadcrumb -->
 					
 						<!-- ARTICLE POST -->
 						<article class="article article-post">
-							<div class="article-share">
-								<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-								<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-								<a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+							<!-- AddToAny BEGIN -->
+							<div class="a2a_kit a2a_kit_size_32 a2a_default_style" style="margin-bottom: 30px;">
+							<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+							<a class="a2a_button_copy_link"></a>
+							<a class="a2a_button_facebook"></a>
+							<a class="a2a_button_whatsapp"></a>
+							<a class="a2a_button_twitter"></a>
+							<a class="a2a_button_email"></a>
+							<a class="a2a_button_telegram"></a>
 							</div>
 							<div class="article-main-img" style="width: 750px;height: 422px;">
 								<img src="{{asset('img/portadas/'.$articulo->imagen)}}" alt="">
@@ -120,38 +130,50 @@
 						<!-- /Ad widget -->
 						
 						<!-- social widget -->
-						<div class="widget social-widget">
+						<div class="widget social-widget" align="center">
 							<div class="widget-title">
-								<h2 class="title">Stay Connected</h2>
+								<h2 class="title">Seguí conectado</h2>
 							</div>
 							<ul>
-								<li><a href="#" class="facebook"><i class="fa fa-facebook"></i><br><span>Facebook</span></a></li>
-								<li><a href="#" class="twitter"><i class="fa fa-twitter"></i><br><span>Twitter</span></a></li>
-								<li><a href="#" class="google"><i class="fa fa-google"></i><br><span>Google+</span></a></li>
-								<li><a href="#" class="instagram"><i class="fa fa-instagram"></i><br><span>Instagram</span></a></li>
-								<li><a href="#" class="youtube"><i class="fa fa-youtube"></i><br><span>Youtube</span></a></li>
-								<li><a href="#" class="rss"><i class="fa fa-rss"></i><br><span>RSS</span></a></li>
+								@if($facebook->url)
+								<li><a class="facebook" href="{{$facebook->url}}"><i class="fa fa-facebook"></i></a></li>
+								@endif
+								@if($instagram->url)
+								<li><a class="instagram" href="{{$instagram->url}}"><i class="fa fa-instagram"></i></a></li>
+								@endif
 							</ul>
 						</div>
 						<!-- /social widget -->
 						
 						
+								@if($publicidades)
+								@foreach($publicidades as $publicidad)
+
+								<div class="widget center-block hidden-xs">
+										<img class="center-block" style="width: 300px;height: 250px;"  src="{{asset('img/sitio/'.$publicidad->imagen)}}" alt="{{$publicidad->nombre}}">
+								</div>
+								
+									
+								@endforeach
+							@else
+								<div style="width: 300px;height: 250px;background: lightgray;padding: 20px"><p>AD 250px x 300px</p> </div>
+							@endif
 						<!-- article widget -->
 						<div class="widget">
 							<div class="widget-title">
 								<h2 class="title">Últimos artículos relacionados</h2>
 							</div>
-							@foreach($ultimos_articulos as $articulos)
+							@foreach($ultimos_articulos as $articulo)
 							
 							<!-- ARTICLE -->
 							<article class="article widget-article">
 								<div class="article-img">
-									<a href="#">
+									<a href="{{url('/articulo/'.$articulo->categoria->slug.'/'.$articulo->slug)}}">
 										<img src="{{asset('img/portadas/'.$articulo->imagen)}}" alt="">
 									</a>
 								</div>
 								<div class="article-body">
-									<h4 class="article-title"><a href="#">{{$articulo->titulo}}</a></h4>
+									<h4 class="article-title"><a href="{{url('/articulo/'.$articulo->categoria->slug.'/'.$articulo->slug)}}">{{$articulo->titulo}}</a></h4>
 									<ul class="article-meta">
 										<li><i class="fa fa-clock-o"></i> {{$articulo->created_at}}</li>
 										<li><i class="fa fa-comments"></i> {{$articulo->total_comentarios}}</li>
@@ -171,15 +193,10 @@
 			<!-- /CONTAINER -->
 		</div>
 		<!-- /SECTION -->
-		
-		<!-- AD SECTION -->
-		<div class="visible-lg visible-md">
-			<img class="center-block" src="./img/ad-3.jpg" alt="">
-		</div>
-		<!-- /AD SECTION -->
+	
+
 		
 		
-		
-		
+<script async src="https://static.addtoany.com/menu/page.js"></script>		
 
 @endsection

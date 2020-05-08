@@ -120,5 +120,7 @@ Route::group(['middleware' => ['checkrole:administrador']], function () {
 	Route::post('/admin/contacto/configurarFacebook','AdminContactoController@configurarFacebook')->name('configurarFacebook');
 	Route::post('/admin/contacto/configurarInstagram','AdminContactoController@configurarInstagram')->name('configurarInstagram');
 
-
+	Route::get('/admin/mensajes/index','AdminMensajesController@index');
+	Route::get('/admin/mensajes/show/{id}','AdminMensajesController@show');
+	Route::post('/admin/mensajes/eliminar','AdminMensajesController@delete')->name('eliminarMensaje');
 });

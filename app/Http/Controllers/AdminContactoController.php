@@ -56,7 +56,7 @@ class AdminContactoController extends Controller
         DB::beginTransaction();
         try {
         $nosotros = Contacto::find(2);
-        $nosotros->contenido = $request->nosotros;
+        $nosotros->contenido = $request->sobre_nosotros;
         $nosotros->save();
         DB::commit();
         } catch (Exception $e) {

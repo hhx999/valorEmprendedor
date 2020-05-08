@@ -88,10 +88,16 @@ class SeccionesNavController extends Controller
                 if($request->categoria_id[$i] != 0)
                 {
                     $seccion = SeccionesNav::find($request->id[$i]);
+                    
                     $seccion->titulo = $request->titulo[$i];
                     $seccion->categoria_id = intval($request->categoria_id[$i]);
                     $seccion->save();
 
+                } else {
+                    $seccion = SeccionesNav::find($request->id[$i]);
+                    $seccion->titulo = NULL;
+                    $seccion->categoria_id = NULL;
+                    $seccion->save();
                 }
             }
         DB::commit();

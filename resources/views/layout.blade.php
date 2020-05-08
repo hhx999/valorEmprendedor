@@ -10,7 +10,7 @@
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CLato:300,400" rel="stylesheet"> 
-		<link rel="icon" type="image/png" href="{{asset('img/apariencia/'.$icono)}}" />
+		<link rel="icon" type="image/png" href="{{asset('img/apariencia/'.$icono->imagen)}}" />
 
 		<!-- Bootstrap -->
 		<link type="text/css" rel="stylesheet" href="{{asset('style/css/bootstrap.min.css')}}"/>
@@ -95,7 +95,7 @@
 						<ul class="main-nav nav navbar-nav">
 							<li class="active"><a href="{{url('/')}}">Inicio</a></li>
 							@foreach($secciones as $seccion)
-								<li><a href="{{url('/'.$seccion->categoria->slug)}}">{{$seccion->titulo}}</a></li>
+								<li><a href="{{url('/categoria/'.$seccion->categoria->slug)}}">{{$seccion->titulo}}</a></li>
 							@endforeach
 						</ul>
 					</nav>
@@ -132,12 +132,14 @@
 						<!-- Column 1 -->
 						<div class="col-md-4">
 							<!-- footer about -->
+							<!--
 							<div class="footer-widget about-widget">
 								<div class="footer-logo">
 									<a href="#" class="logo"><img src="./img/logo-alt.png" alt=""></a>
 									<p>Populo tritani laboramus ex mei, no eum iuvaret ceteros euripidis, ne alia sadipscing mei. Te inciderint cotidieque pro, ei iisque docendi qui.</p>
 								</div>
 							</div>
+							-->
 							<!-- /footer about -->
 							
 							<!-- footer social -->
@@ -183,18 +185,22 @@
 							
 						</div>
 							<!-- /footer subscribe -->
+							<!-- Column 3 -->
+							<div class="col-md-4">
+								<div class="footer-widget subscribe-widget">
+								<div class="widget-title">
+									<h2 class="title">Mapa del sitio</h2>
+								</div>
+									@foreach($secciones as $seccion)
+									<span style="color: white;"><a href="{{url('/categoria/'.$seccion->categoria->slug)}}">{{$seccion->titulo}}</a> <b style="color: gray;">|</b> </span>
+									@endforeach
+								</div>
+								
+							</div>
+							<!-- /Column 3 -->
 						</div>
 						<!-- /Column 2 -->
 						
-						<!-- Column 3 -->
-						<div class="col-md-4">
-
-							@foreach($secciones as $seccion)
-								<span>{{$seccion->nombre}} <b style="color: gray;">|</b> </span>
-							@endforeach
-							
-						</div>
-						<!-- /Column 3 -->
 					</div>
 					<!-- /ROW -->
 				</div>

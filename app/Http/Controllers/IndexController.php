@@ -69,7 +69,7 @@ class IndexController extends Controller
 
         $ultimos_articulos = Articulo::where('categoria_id',$articulo->categoria_id)->where('id', '!=', $articulo->id)->orderBy('created_at','DESC')->take(4)->get();
         
-        $publicidades = Publicidad::where('publicidad_tipo_id',2)->get(); 
+        $publicidades = Publicidad::where('publicidad_tipo_id',3)->get(); 
         $publicidad_header = Publicidad::where('publicidad_tipo_id',1)->orderBy('created_at','DESC')->first();
 
         return view('articulos_publico.index', ['articulo' => $articulo, 'logo' => $logo, 'icono' => $icono, 'publicidades' => $publicidades, 'publicidad_header' => $publicidad_header, 'ultimos_articulos' => $ultimos_articulos, 'secciones' => $secciones ,'comentarios' => $comentarios, 'categoria_mensajes' => $categoria_mensajes, 'facebook' => $facebook, 'instagram' => $instagram]);

@@ -15,6 +15,9 @@
 						<!-- section title -->
 						<div class="section-title">
 							<h2 class="title">{{$categoria->nombre}}</h2>
+							<h3>
+								<p>{{$categoria->descripcion}}</p>
+							</h3>
 						</div>
 						<!-- /section title -->
 						
@@ -24,7 +27,11 @@
 							<div id="tab1" class="tab-pane fade in active">
 								<!-- row -->
 								<div class="row">
-
+								@if($articulos->isEmpty())
+								<div class="col-md-12">
+									<p>Por ahora no hay artículos cargados en {{$categoria->nombre}}...</p>
+								</div>
+								@endif
 								@foreach($articulos as $articulo)
 									<!-- Column -->
 									<div class="col-md-3 col-sm-6">
@@ -48,7 +55,7 @@
 									</div>
 									<!-- /Column  -->
 									@endforeach
-									
+									</div>
 								</div>
 								<!-- /row -->
 					</div>

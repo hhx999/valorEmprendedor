@@ -193,18 +193,26 @@ return [
                     'url'  => 'admin/articulos/create',
                 ],
                 [
+                    'text' => 'Ver anuncios',
+                    'url'  => 'admin/anuncios/index',
+                ],
+                [
+                    'text' => 'Crear anuncios',
+                    'url'  => '/admin/anuncios/create',
+                ],
+                [
                     'text' => 'Configurar secciones',
                     'url'  => 'admin/secciones/configurar',
                 ],
             ],
         ],
         [
-            'text' => 'Consultas',
-            'url'  => 'admin/verConsultas',
+            'text' => 'Mensajes',
+            'url'  => 'admin/mensajes/index',
             'icon' => 'fas fa-comment',
         ],
         [
-            'text'    => 'Categorías / Rubros',
+            'text'    => 'Categorías',
             'icon'    => 'fas fa-hashtag',
             'submenu' => [
                 [
@@ -214,14 +222,6 @@ return [
                 [
                     'text' => 'Crear categorías',
                     'url'  => 'admin/categorias/create',
-                ],
-                [
-                    'text' => 'Ver rubros',
-                    'url'  => 'admin/rubros/index',
-                ],
-                [
-                    'text' => 'Crear rubros',
-                    'url'  => 'admin/rubros/create',
                 ],
             ],
         ],
@@ -237,9 +237,18 @@ return [
             'icon' => 'fas fa-share-alt',
         ],
         [
-            'text' => 'Publicidad',
-            'url'  => 'admin/publicidad/index',
-            'icon' => 'fas fa-tag',
+            'text'    => 'Publicidad',
+            'icon'    => 'fas fa-tag',
+            'submenu' => [
+                [
+                    'text' => 'Ver publicidades',
+                    'url'  => 'admin/publicidad/index',
+                ],
+                [
+                    'text' => 'Crear publicidad',
+                    'url'  => 'admin/publicidad/create',
+                ],
+            ],
         ],
         /*
         ['header' => 'Manejo del usuarios'],

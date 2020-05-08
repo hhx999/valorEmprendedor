@@ -72,12 +72,21 @@
 							<!-- tab1 -->
 							<div id="tab1" class="tab-pane fade in active">
 								<!-- row -->
+								@if($articulos->isEmpty())
 								<div class="row">
+									<div class="col-md-12">
+										<p>
+											Por ahora no tenemos artículos cargados...
+										</p>
+									</div>
+								</div>
+								@endif
+								<div class="row">
+										<div class="row">
 									@foreach($articulos as $articulo)
 									<!-- /Column -->
 									@if($loop->index > 3)
 										<!-- row -->
-										<div class="row">
 												<!-- Column 1 -->
 												<div class="col-md-4 col-sm-6">
 													<!-- ARTICLE -->
@@ -98,8 +107,6 @@
 													<!-- /ARTICLE -->
 												</div>
 												<!-- /Column 1 -->
-										</div>
-
 									@else
 									<!-- /Column -->
 									<!-- Column -->
@@ -128,7 +135,9 @@
 									</div>
 									@endif
 									
+									
 									@endforeach
+									</div>
 
 								</div>
 								<!-- /row -->
@@ -169,7 +178,9 @@
 								</div>
 								<!-- /section title -->
 								
-
+								@if($ultimos_anuncios->isEmpty())
+								<p> Por ahora no hay nada cargado por acá...</p>
+								@endif
 								@foreach($ultimos_anuncios as $anuncio)
 								<!-- ARTICLE -->
 								<article class="article widget-article">
@@ -190,13 +201,6 @@
 								@endforeach
 							</div>
 							<!-- /Column 1 -->
-							<div class="row">
-								<div class="col-md-12">
-									@foreach($categorias as $categoria)
-									<span> <a href="{{url('/'.$categoria->slug)}}">{{$categoria->nombre}}</a> / </span>
-									@endforeach
-								</div>
-							</div>
 						</div>
 						<!-- /row -->
 
@@ -211,7 +215,11 @@
 						<!--<div class="widget center-block hidden-xs" align="center">-->
 							@if($publicidades)
 								@foreach($publicidades as $publicidad)
-									<img style="width: 300px;height: 250px;display:block !important;"  src="{{asset('img/sitio/'.$publicidad->imagen)}}" alt="">
+
+								<div class="widget center-block hidden-xs">
+										<img class="center-block" style="width: 300px;height: 250px;"  src="{{asset('img/sitio/'.$publicidad->imagen)}}" alt="{{$publicidad->nombre}}">
+								</div>
+								
 									
 								@endforeach
 							@else
@@ -221,18 +229,23 @@
 						<!-- /Ad widget -->
 						
 						<!-- social widget -->
-						<div class="widget social-widget">
+						<div class="widget social-widget" align="center">
 							<div class="widget-title">
 								<h2 class="title">Nuestras redes</h2>
 							</div>
 							<ul>
-								<li><a href="#" class="facebook"><i class="fa fa-facebook"></i><br><span>Facebook</span></a></li>
-								<!--<li><a href="#" class="twitter"><i class="fa fa-twitter"></i><br><span>Twitter</span></a></li>
-								<li><a href="#" class="google"><i class="fa fa-google"></i><br><span>Google+</span></a></li>-->
-								<li><a href="#" class="instagram"><i class="fa fa-instagram"></i><br><span>Instagram</span></a></li>
-								<!--<li><a href="#" class="youtube"><i class="fa fa-youtube"></i><br><span>Youtube</span></a></li>-->
-								<li><a href="#" class="rss"><i class="fa fa-rss"></i><br><span>RSS</span></a></li>
+								@if($facebook->url)
+								<li><a href="{{$facebook->url}}" class="facebook"><i class="fa fa-facebook"></i></a></li>
+								@endif
+								@if($instagram->url)
+								<li><a href="{{$instagram->url}}" class="instagram"><i class="fa fa-instagram"></i></a></li>
+								@endif
 							</ul>
+								@if($facebook->url == null || $instagram->url == null)
+								<p style="text-align:center;">
+									Proximamente agregaremos el contacto de nuestras redes sociales!
+								</p>
+								@endif
 						</div>
 						<!-- /social widget -->
 						
@@ -261,6 +274,13 @@
 					<!-- /Aside Column -->
 				</div>
 				<!-- /ROW -->
+				<div class="row">
+								<div class="col-md-12">
+									@foreach($categorias as $categoria)
+									<span> <a href="{{url('/'.$categoria->slug)}}">{{$categoria->nombre}}</a> / </span>
+									@endforeach
+								</div>
+				</div>
 			</div>
 			<!-- /CONTAINER -->
 		</div>

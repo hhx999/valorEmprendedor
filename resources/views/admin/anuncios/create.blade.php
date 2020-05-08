@@ -73,7 +73,7 @@
 
 		                  <div class="form-group">
 		                    <label for="descripcion">Descripción</label>
-		                    <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Ingresar descripción...">
+		                    <textarea class="form-control" name="descripcion" id="descripcion"></textarea>
 		                  </div>
 		            </div>
 		          <div class="card-footer">
