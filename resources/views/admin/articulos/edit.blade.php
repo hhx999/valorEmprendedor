@@ -68,7 +68,7 @@
           <!-- EDITOR -->
             <!-- /.card-header -->
             <div class="panel-body">
-                            <textarea class="ckeditor"  name="cuerpo" id="editor1">{{$articulo->descripcion}}</textarea>
+                            <textarea class="ckeditor"  name="cuerpo" id="editor1">{{$articulo->cuerpo}}</textarea>
             </div>
           <div class="card-footer">
               <button type="submit" class="btn btn-primary">Editar artículo</button>
