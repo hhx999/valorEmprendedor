@@ -7,7 +7,33 @@
 @stop
 
 @section('content')
+<!-- Modal -->
+<div id="articuloEliminar" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+<form method="post" name="eliminarArticulo" action="{{route('eliminarArticulo')}}">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Eliminar artículo</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          @csrf
+                   <div class="card-body">
+                    <input type="hidden" name="idEliminar" id="idEliminar">
+                     <p id="mensajeModalEliminar"></p>
+                  </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger">Eliminar Artículo</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+<!-- End Modal -->
 <div class="row mb-2">
           <div class="col-12">
             <div class="card">
