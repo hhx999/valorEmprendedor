@@ -7,9 +7,7 @@
 @stop
 
 @section('content')
-<!--<script src="{{ asset('/vendors/ckeditor/src/ckeditor.js') }}"></script>-->
- <script src="https://cdn.ckeditor.com/4.14.0/standard-all/ckeditor.js"></script>
-</head>
+
 <div class="row">
   @if (\Session::has('success'))
   <div class="col-md-12">
@@ -66,9 +64,7 @@
           <!-- EDITOR -->
             <!-- /.card-header -->
             <div class="panel-body">
-                            <textarea class="ckeditor"  name="cuerpo" id="editor1">
-                                Este es el textarea que es modificado por la clase ckeditor
-                            </textarea>
+                            <textarea class="ckeditor"  name="cuerpo" id="editor1"></textarea>
             </div>
           <div class="card-footer">
               <button type="submit" class="btn btn-primary">Agregar artículo</button>
@@ -83,6 +79,7 @@
 @stop
 
 @section('js')
+ <script src="https://cdn.ckeditor.com/4.14.0/standard-all/ckeditor.js"></script>
 
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script> console.log('Hi!'); </script>
