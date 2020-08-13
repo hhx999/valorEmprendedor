@@ -82,7 +82,7 @@
 @stop
 
 @section('js')
-<script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+ <script src="{{ asset('js/ckeditor.js') }}"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script> console.log('Hi!'); </script>
  <script>
