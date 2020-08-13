@@ -15,7 +15,7 @@
 <form method="post" name="eliminarArticulo" action="{{route('eliminarArticulo')}}">
     <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Eliminar artículo</h4>
+          <h4 class="modal-title">Eliminar artículo </h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
@@ -89,5 +89,12 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script> 
+      $('.articuloEliminar').on('click', function() {
+          var id = $(this).parents("tr").find("td").eq(0).text();
+          $('#idEliminar').val(undefined);
+          $('#idEliminar').val(id);
+          $('#mensajeModalEliminar').text('Desea eliminar la artículo con id '+id+'?');
+      })
+    </script>
 @stop
