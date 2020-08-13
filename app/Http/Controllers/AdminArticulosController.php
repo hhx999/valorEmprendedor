@@ -104,8 +104,9 @@ class AdminArticulosController extends Controller
     public function edit($id)
     {
         //
+        $categorias = Categoria::all();
         $articulo = Articulo::findOrFail($id);
-        return view('admin.articulos.edit', ['articulo' => $articulo]);
+        return view('admin.articulos.edit', ['articulo' => $articulo, 'categorias' => $categorias]);
     }
 
     /**
