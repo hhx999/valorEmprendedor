@@ -69,17 +69,31 @@
 			<div id="center-header">
 				<div class="container">
 					<!-- Agregar logo ingresado en apariencia -->
+					<!--
 					<div class="header-logo">
-						<a href="{{url('/')}}" class="logo" style="max-width: 300px;"><img src="{{asset('img/apariencia/'.$logo->imagen)}}" alt=""></a>
-					</div>
+						<a href="{{url('/')}}" class="logo"><img src="{{asset('img/apariencia/'.$logo->imagen)}}" alt=""></a>
+					</div>-->
 					<!-- Agregar ads ingresadas en publicidad -->
-					<div style="float: right;">
-						<a href="#" class="logo"><img style="width: 728px;height: 90px;" src="@if($publicidad_header)
-							{{asset('img/sitio/'.$publicidad_header->imagen)}}
-							@else 
-							{{asset('style/img/img-widget-11.jpg')}}
+					<!--
+						<div style="float: right;">
+							<a href="#" class="logo"><img style="width: 728px;height: 90px;" src="@if($publicidad_header)
+								{{asset('img/sitio/'.$publicidad_header->imagen)}}
+								@else 
+								{{asset('style/img/img-widget-11.jpg')}}
+								@endif
+								" alt=""></a>
+						</div>
+					-->
+					<div class="row">
+						<div class="col-md-6">
+							<a href="{{url('/')}}" class="logo"><img style="width: 100%;" src="{{asset('img/apariencia/'.$logo->imagen)}}" alt=""></a>
+						</div>
+						<div class="col-md-6">
+							@if($publicidad_header)
+							<a href="#" class="logo"><img style="width: 728px;height: 90px;" src="
+								{{asset('img/sitio/'.$publicidad_header->imagen)}}" alt=""></a>
 							@endif
-							" alt=""></a>
+						</div>
 					</div>
 				</div>
 			</div>
