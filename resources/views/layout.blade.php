@@ -88,12 +88,14 @@
 						<div class="col-md-6">
 							<a href="{{url('/')}}" class="logo"><img style="width: 100%;" src="{{asset('img/apariencia/'.$logo->imagen)}}" alt=""></a>
 						</div>
+						<!--
 						<div class="col-md-6">
 							@if($publicidad_header)
 							<a href="#" class="logo"><img style="width: 728px;height: 90px;" src="
 								{{asset('img/sitio/'.$publicidad_header->imagen)}}" alt=""></a>
 							@endif
 						</div>
+						-->
 					</div>
 				</div>
 			</div>
