@@ -37,9 +37,16 @@
 							<a class="a2a_button_email"></a>
 							<a class="a2a_button_telegram"></a>
 							</div>
+							<div class="col-md-12">
+								<div style="background: url('{{asset('img/portadas/'.$articulo->imagen)}}');background-size: contain;
+	background-position: center center; width: 100%;height: 400px;background-repeat: no-repeat;">
+								</div>
+							</div>
+							<!--
 							<div class="article-main-img" style="width: 750px;height: 422px;">
 								<img src="{{asset('img/portadas/'.$articulo->imagen)}}" alt="">
 							</div>
+							-->
 							<div class="article-body">
 								<ul class="article-info">
 									<li class="article-category"><a href="{{route('verCategoria', $articulo->categoria->slug)}}">{{$articulo->categoria->nombre}}</a></li>
