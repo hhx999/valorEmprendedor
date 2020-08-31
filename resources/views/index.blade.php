@@ -185,12 +185,10 @@
 								<!-- ARTICLE -->
 								<article class="article widget-article">
 									<div class="article-img" style="width: 200px !important;">
-										<a href="#">
 											<img src="{{asset('img/anuncios/'.$anuncio->imagen)}}" alt="{{$anuncio->titulo}}">
-										</a>
 									</div>
 									<div class="article-body">
-										<h3 class="article-title"><a href="#">{{$anuncio->titulo}}</a></h3>
+										<h3 class="article-title">{{$anuncio->titulo}}</h3>
 										<ul class="article-meta">
 											<li><i class="fa fa-clock-o"></i> {{$anuncio->fecha}}</li>
 										</ul>
